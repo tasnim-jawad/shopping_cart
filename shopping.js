@@ -24,6 +24,9 @@ document.getElementById('case_increase').addEventListener('click',function(){
     let caseCount = parseInt(caseInput.value);
     let caseNewCount = caseCount + 1;
         caseInput.value = caseNewCount;
+
+    let caseTotal = caseNewCount * 60;
+        document.getElementById('case_total').innerText = '=' + caseTotal + '/-';
 });
 
 document.getElementById('case_dicrease').addEventListener('click',function(){
@@ -32,5 +35,7 @@ document.getElementById('case_dicrease').addEventListener('click',function(){
         if(caseCount > 0){
         let caseNewCount = caseCount - 1;
         caseInput.value = caseNewCount;
+        let caseTotal = caseNewCount * 60;
+        document.getElementById('case_total').innerText = '=' + caseTotal + '/-';
         }
 })
