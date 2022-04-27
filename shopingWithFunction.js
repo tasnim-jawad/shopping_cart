@@ -1,4 +1,4 @@
-function productCartNumber(isIncrease){
+function phoneCartNumber(isIncrease){
     let phoneInput = document.getElementById('phone_count');
     let phoneCount = parseInt(phoneInput.value);
     let phoneNewCount = phoneCount;
@@ -15,14 +15,14 @@ function productCartNumber(isIncrease){
 }
 
 document.getElementById('phone_increase').addEventListener('click',function(){
-    productCartNumber(true)
+    phoneCartNumber(true)
 });
 
 document.getElementById('phone_dicrease').addEventListener('click',function(){
-    productCartNumber(false)
+    phoneCartNumber(false)
 })
 
-function productCartNumber(isIncrease){
+function caseCartNumber(isIncrease){
     let caseInput = document.getElementById('case_count');
     let caseCount = parseInt(caseInput.value);
     let caseNewCount = caseCount;
@@ -39,9 +39,9 @@ function productCartNumber(isIncrease){
 }
 
 document.getElementById('case_increase').addEventListener('click',function(){
-    productCartNumber(true)
+    caseCartNumber(true)
 });
 
 document.getElementById('case_dicrease').addEventListener('click',function(){
-    productCartNumber(false)
+    caseCartNumber(false)
 })
