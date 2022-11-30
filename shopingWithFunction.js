@@ -1,47 +1,56 @@
-function phoneCartNumber(isIncrease){
-    let phoneInput = document.getElementById('phone_count');
-    let phoneCount = parseInt(phoneInput.value);
-    let phoneNewCount = phoneCount;
+
+let phoneSubtotal = 0;
+let caseSubtotal = 0;
+
+
+function productCartNumber(isIncrease , price ,quantityId ,totalPerProductID){
+    let productInput = document.getElementById(quantityId);
+    let productCount = parseInt(productInput.value);
+    let productNewCount = productCount;
     if (isIncrease == true) {
-        phoneNewCount = phoneCount + 1;
-        phoneInput.value = phoneNewCount;
-    }else if(isIncrease == false && phoneNewCount > 0){
-        phoneNewCount = phoneCount - 1;
-        phoneInput.value = phoneNewCount;
+        productNewCount = productCount + 1;
+        productInput.value = productNewCount;
+    }else if(isIncrease == false && productNewCount > 0){
+        productNewCount = productCount - 1;
+        productInput.value = productNewCount;
     }
-    let phoneTotal = phoneNewCount * 1219;
-        document.getElementById('phone_total').innerText = '=' + phoneTotal + '/-';
-
+    
+    let productTotal = productNewCount * price;
+    document.getElementById(totalPerProductID).innerText =  productTotal;
+    if(totalPerProductID === 'caseTotalNumber'){
+        caseSubtotal = productTotal;
+        subTotal(phoneSubtotal ,caseSubtotal)
+    }else if(totalPerProductID === 'phoneTotalNumber'){
+        phoneSubtotal = productTotal;
+        subTotal(phoneSubtotal ,caseSubtotal)
+    }
+    
 }
-
 document.getElementById('phone_increase').addEventListener('click',function(){
-    phoneCartNumber(true)
+    productCartNumber(true ,12000 ,'phone_count', 'phoneTotalNumber');
 });
 
 document.getElementById('phone_dicrease').addEventListener('click',function(){
-    phoneCartNumber(false)
+    productCartNumber(false ,12000 ,'phone_count', 'phoneTotalNumber');
 })
 
-function caseCartNumber(isIncrease){
-    let caseInput = document.getElementById('case_count');
-    let caseCount = parseInt(caseInput.value);
-    let caseNewCount = caseCount;
-    if (isIncrease == true) {
-        caseNewCount = caseCount + 1;
-        caseInput.value = caseNewCount;
-    }else if(isIncrease == false && caseNewCount > 0){
-        caseNewCount = caseCount - 1;
-        caseInput.value = caseNewCount;
-    }
-    let caseTotal = caseNewCount * 59;
-        document.getElementById('case_total').innerText = '=' + caseTotal + '/-';
-
-}
-
 document.getElementById('case_increase').addEventListener('click',function(){
-    caseCartNumber(true)
+    productCartNumber(true ,200 ,'case_count', 'caseTotalNumber')
 });
 
 document.getElementById('case_dicrease').addEventListener('click',function(){
-    caseCartNumber(false)
+    productCartNumber(false, 200,'case_count' ,'caseTotalNumber')
 })
+
+
+function subTotal(phoneSubtotal , caseSubtotal) {
+    let subTotal = phoneSubtotal  + caseSubtotal ;
+    let taxTotal = (subTotal /100)*15;
+    let payableTotal = subTotal + taxTotal
+    console.log(phoneSubtotal,caseSubtotal,payableTotal);
+    document.getElementById("subTotal").innerText = subTotal;
+    document.getElementById("taxTotal").innerText = taxTotal;
+    document.getElementById("payableTotal").innerText = payableTotal;
+}
+
+
